@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <links>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+                <link rel="stylesheet" href="Ckdejager_FE_Project1_quiz.css"/>
+                <link rel="icon" type="image/icon" href="milleniumFalconFavicon.ico"/>
+            </links>
+                 
+            <title>
+                Star Wars: The Last Quiz
+            </title>
+        </head>
+            
+
+            
+        <body class="quizBody">
+            <div>
+                <h2>Star Wars Quiz</h2>
+            </div>
+
+            <div id="home-Page" class="quizQuestionBody">
+                <div>
+                    <img class="mainPageImage" src="StarWarsAllCharacters.png" alt="Star Wars all main characters from the movies">
+                </div>
+                <br/>
+                <div>
+                    <p>Welcome to the Star Wars quiz</p>
+                    <p>Here you will be asked ten questions relating to the Star Wars franchise, primarily the movies and the books.</p>
+                    <br/>
+                    <p>You may go back to change your answer until you reach the end.</p>
+                    <br/>
+                    <p>Good luck and may the Force be with you!</p>
+                </div>
+            </div>
+
+            <div class="quizQuestionBody" id="quizForm" hidden="true">
+                <h3 id="question-header">Placeholder</h3>
+                
+                <div>
+                    <form>
+                    <p id="question-text">Placeholder</p>
+                    <div>
+                        <input name="quizQuestion" type="radio" id="question-1"/>
+                        <label class="quizQuestionsText" for="question-1" id="quiz-question-text-1">Placeholder</label>
+                    </div>
+                    <div>
+                        <input name="quizQuestion" type="radio" id="question-2"/>
+                        <label class="quizQuestionsText" for="question-2" id="quiz-question-text-2">Placeholder</label>
+                    </div>
+                    <div>
+                        <input name="quizQuestion" type="radio" id="question-3"/>
+                        <label class="quizQuestionsText" for="question-3" id="quiz-question-text-3">Placeholder</label>
+                    </div>
+                    <div>
+                        <input name="quizQuestion" type="radio" id="question-4"/>
+                        <label class="quizQuestionsText" for="question-4" id="quiz-question-text-4">Placeholder</label>
+                    </div>
+                    </form>
+                </div>
+                
+            </div>
+
+            <div class="quizQuestionBody">
+                    
+            </div>
+
+            <br/>
+            <div>
+                <button class="button" id="back-button" type="button" hidden="true">Back</button>
+                <button class="button" id="next-button" type="submit">Start Quiz</button>
+            </div>
+            <br/>
+            <scripts>
+                <script src="./Ckdejager_FE_Project1_quizLogic.js"></script>
+            </scripts>       
+            
+        </body>
+
+        <footer>
+            <p>This quiz was created by: Christopher-Kyle de Jager</p>
+        </footer>
+    </html>
