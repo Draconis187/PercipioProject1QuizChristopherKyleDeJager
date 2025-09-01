@@ -18,24 +18,25 @@
         <body class="quizBody">
             <div>
                 <h2>Star Wars Quiz</h2>
+                <br/>
             </div>
 
-            <div id="home-Page" class="quizQuestionBody">
+            <div id="home-page" class="quizQuestionBody">
                 <div>
                     <img class="mainPageImage" src="StarWarsAllCharacters.png" alt="Star Wars all main characters from the movies">
                 </div>
                 <br/>
                 <div>
-                    <p>Welcome to the Star Wars quiz</p>
-                    <p>Here you will be asked ten questions relating to the Star Wars franchise, primarily the movies and the books.</p>
+                    <h4>Welcome to the Star Wars quiz</h4>
                     <br/>
+                    <p>Here you will be asked ten questions relating to the Star Wars franchise, primarily the movies and the books.</p>
                     <p>You may go back to change your answer until you reach the end.</p>
                     <br/>
                     <p>Good luck and may the Force be with you!</p>
                 </div>
             </div>
 
-            <div class="quizQuestionBody" id="quizForm" hidden="true">
+            <div class="quizQuestionBody" id="quiz-page" hidden="true">
                 <h3 id="question-header">Placeholder</h3>
                 
                 <div>
@@ -62,14 +63,15 @@
                 
             </div>
 
-            <div class="quizQuestionBody" id="resultsScreen">
+            <div class="quizQuestionBody" id="results-page" hidden="true">
                 <div>
                     <h3>End of quiz</h3>
                     <br/>
-                    <h4>Your results are:</h4>
+                    <h5>Your results are:</h4>
                     <p id="results">Placeholder</p>
                     <br/>
                     <p id="results-text">Placeholder text to describe how well the user did in the quiz. Will be dependent on how the score the user achieved.</p>
+                    <img id="results-image"/>
                 </div>
                     
             </div>
@@ -77,7 +79,8 @@
             <br/>
             <div>
                 <button class="button" id="back-button" type="button" hidden="true">Back</button>
-                <button class="button" id="next-button" type="submit">Start Quiz</button>
+                <button class="button" id="next-button" type="button">Start Quiz</button>
+                <button class="button" id="reset-button" type="button" hidden="true">Restart Quiz</button>
             </div>
             <br/>
             <scripts>
