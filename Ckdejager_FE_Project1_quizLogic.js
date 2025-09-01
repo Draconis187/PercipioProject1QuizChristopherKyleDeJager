@@ -105,35 +105,41 @@ let questionHeader = document.getElementById("question-header");
 
 let answer = document.getElementsByName("quizQuestion");
 
-let quizQuestions = document.getElementsByClassName("quizQuestionsText");
+const quizQuestions = document.getElementsByClassName("quizQuestionsText");
 
-let form = document.getElementById("quizForm");
+const form = document.getElementById("quizForm");
+let results = document.getElementById("resultsScreen");
 
 let quizScore = 0;
 
 nextButton.addEventListener("click", () => {
-  if (currentQuestionID < 10) {
+  if (currentQuestionID < 11) {
     if (currentQuestionID === 0) {
       currentQuestionID++;
     } else {
       checkAnswer(answer);
       currentQuestionID++;
     }
-    updateQuestion(currentQuestionID);
+    updatePage(currentQuestionID);
   }
 });
 
 backButton.addEventListener("click", () => {
   if (currentQuestionID > 1) {
     currentQuestionID--;
-    updateQuestion(currentQuestionID);
+    updatePage(currentQuestionID);
   }
 });
 
-function updateQuestion(currentQuestionID) {
-  //create case statement for quiz pages
-  //create object for user answers to avoid cheesing 10/10
+function updatePage(currentQuestionID) {
+  if (currentQuestionID > 0 || currentQuestionID <= 10) {
+    updateQuestion(currentQuestionID);
+  }
 
+  updateButtonsText(currentQuestionID);
+}
+
+function updateQuestion(currentQuestionID) {
   form.hidden = false;
   for (let i = 0; i < answer.length; i++) {
     quizQuestions[i].innerHTML =
@@ -145,19 +151,10 @@ function updateQuestion(currentQuestionID) {
   questionHeader.innerHTML = `Question ${currentQuestionID}`;
   questionText.innerHTML = quizData[currentQuestionID - 1].questionText;
   //}
-
-  updateButtonsText(currentQuestionID);
 }
 
 function updateButtonsText(currentQuestionID) {
   backButton.hidden = false;
-  switch (currentQuestionID) {
-    case currentQuestionID === 1: {
-      backButton.innerHTML = "Return to Home Page";
-    }
-
-    default:
-  }
 
   if (currentQuestionID === 1) {
     backButton.innerHTML = "Return to Home Page";
