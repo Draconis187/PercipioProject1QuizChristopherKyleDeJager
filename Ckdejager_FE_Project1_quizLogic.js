@@ -97,19 +97,23 @@ const quizData = QuizQuestionData;
 
 let userAnswers = [];
 
-let currentQuestionID = document.getElementById("current-quiz-question-id");
 const nextButton = document.getElementById("next-button");
 const backButton = document.getElementById("back-button");
-let questionText = document.getElementById("question-text");
-let questionHeader = document.getElementById("question-header");
+const resetButton = document.getElementById("reset-button");
+const questionText = document.getElementById("question-text");
+const questionHeader = document.getElementById("question-header");
 
-let answer = document.getElementsByName("quizQuestion");
+const answer = document.getElementsByName("quizQuestion");
 
 const quizQuestions = document.getElementsByClassName("quizQuestionsText");
 
-const form = document.getElementById("quizForm");
-let results = document.getElementById("resultsScreen");
+const homePage = document.getElementById("home-page");
+const quizPage = document.getElementById("quiz-page");
+const resultsPage = document.getElementById("results-page");
+const results = document.getElementById("results");
+const resultsText = document.getElementById("results-text");
 
+let currentQuestionID = 0;
 let quizScore = 0;
 
 nextButton.addEventListener("click", () => {
@@ -131,41 +135,71 @@ backButton.addEventListener("click", () => {
   }
 });
 
+resetButton.addEventListener("click", () => {
+  currentQuestionID = 0;
+  restartQuiz(currentQuestionID);
+});
+
 function updatePage(currentQuestionID) {
-  if (currentQuestionID > 0 || currentQuestionID <= 10) {
+  if (currentQuestionID > 0 && currentQuestionID < 11) {
+    homePage.hidden = true;
+    resultsPage.hidden = true;
     updateQuestion(currentQuestionID);
+  } else if (currentQuestionID === 0) {
+    homePage.hidden = false;
+    resultsPage.hidden = true;
+  } else if (currentQuestionID === 11) {
+    resultsPage.hidden = false;
+    quizPage.hidden = true;
+    displayResults(currentQuestionID);
+  } else {
+    quizPage.hidden = true;
   }
 
-  updateButtonsText(currentQuestionID);
+  for (let i = 0; i < answer.length; i++) {
+    if (answer[i].checked === true) {
+      answer[i].checked = false;
+    }
+  }
+
+  updateButtons(currentQuestionID);
 }
 
 function updateQuestion(currentQuestionID) {
-  form.hidden = false;
-  for (let i = 0; i < answer.length; i++) {
-    quizQuestions[i].innerHTML =
-      quizData[currentQuestionID - 1].possibleAnswers[i];
-    answer[i].value = quizData[currentQuestionID - 1].possibleAnswers[i];
-  }
+  quizPage.hidden = false;
+  if (
+    (currentQuestionID > 0 && currentQuestionID < 11) ||
+    currentQuestionID === 10
+  ) {
+    questionHeader.innerHTML = `Question ${currentQuestionID}`;
+    questionText.innerHTML = quizData[currentQuestionID - 1].questionText;
 
-  //if (currentQuestionID > 0) {
-  questionHeader.innerHTML = `Question ${currentQuestionID}`;
-  questionText.innerHTML = quizData[currentQuestionID - 1].questionText;
-  //}
+    for (let i = 0; i < answer.length; i++) {
+      quizQuestions[i].innerHTML =
+        quizData[currentQuestionID - 1].possibleAnswers[i];
+      answer[i].value = quizData[currentQuestionID - 1].possibleAnswers[i];
+    }
+  }
 }
 
-function updateButtonsText(currentQuestionID) {
-  backButton.hidden = false;
-
+function updateButtons(currentQuestionID) {
   if (currentQuestionID === 1) {
     backButton.innerHTML = "Return to Home Page";
-  } else {
-    backButton.innerHTML = "Back";
-  }
-
-  if (currentQuestionID === 10) {
-    nextButton.innerHTML = "End Quiz";
-  } else {
+    backButton.hidden = false;
     nextButton.innerHTML = "Next";
+  } else if (currentQuestionID > 1 && currentQuestionID < 10) {
+    backButton.innerHTML = "Back";
+  } else if (currentQuestionID === 10) {
+    nextButton.innerHTML = "End Quiz";
+  } else if (currentQuestionID === 11) {
+    backButton.hidden = true;
+    nextButton.hidden = true;
+    resultsPage.hidden = false;
+    resetButton.hidden = false;
+  } else {
+    nextButton.hidden = false;
+    nextButton.innerHTML = "Start Quiz";
+    resetButton.hidden = true;
   }
 }
 
@@ -200,4 +234,37 @@ function checkAnswer(answer) {
       }
     }
   }
+}
+
+function displayResults() {
+  results.innerHTML = `${quizScore} out of 10`;
+  switch (quizScore) {
+    case 0:
+      resultsText.innerHTML = "Pathetic";
+      break;
+    case 1:
+    case 2:
+    case 3:
+      resultsText.innerHTML = "I find your lack of score disturbing";
+      break;
+    case 4:
+    case 5:
+      resultsText.innerHTML = "Your score is on par with a Stormtrooper";
+      break;
+    case 6:
+    case 7:
+      resultsText.innerHTML = "Adequate performance for a rebel";
+      break;
+    case 8:
+    case 9:
+    case 10:
+      resultsText.innerHTML = "You have brought balance to the Force";
+      break;
+  }
+}
+
+function restartQuiz(currentQuestionID) {
+  quizScore = 0;
+  userAnswers.length = 0;
+  updatePage(currentQuestionID);
 }
