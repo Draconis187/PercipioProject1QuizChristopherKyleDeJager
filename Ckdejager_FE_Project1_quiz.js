@@ -67,7 +67,7 @@ export const QuizQuestionData = [
     questionID: 7,
     questionText:
       "What is the name of the droid that was made by Anakin Skywalker when he was a child?",
-    possibleAnswers: ["R2-D2", "C3PO", "BB-8", "Chopper"],
+    possibleAnswers: ["R2-D2", "C2P0", "BB-8", "Chopper"],
     answer: "R2-D2",
   },
   {
