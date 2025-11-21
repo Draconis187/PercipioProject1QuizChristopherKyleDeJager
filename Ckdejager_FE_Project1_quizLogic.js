@@ -1,99 +1,9 @@
-const QuizQuestionData = [
-  {
-    questionID: 1,
-    questionText:
-      "What was Anakin Skywalker referred to as by the Jedi Council?",
-    possibleAnswers: [
-      "The Breaded One",
-      "The Chosen One",
-      "The Greatest One",
-      "The Loved One",
-    ],
-    correctAnswer: "The Chosen One",
-  },
-  {
-    questionID: 2,
-    questionText: "Who was the original owner of the Millenium Falcon?",
-    possibleAnswers: [
-      "Han Solo",
-      "Chewbacca",
-      "Lando Calrissian",
-      "Luke Skywalker",
-    ],
-    correctAnswer: "Lando Calrissian",
-  },
-  {
-    questionID: 3,
-    questionText: "What was the Death Star's weakness?",
-    possibleAnswers: [
-      "Poor plumbing",
-      "Bad electrical work",
-      "Exposed exhaust port",
-      "The Emperor",
-    ],
-    correctAnswer: "Exposed exhaust port",
-  },
-  {
-    questionID: 4,
-    questionText: "Who imprisoned Han Solo in Carbonite?",
-    possibleAnswers: ["Jango Fett", "Boba Fett", "His mother", "Chewbacca"],
-    correctAnswer: "Boba Fett",
-  },
-  {
-    questionID: 5,
-    questionText:
-      "In the game series Star Wars Jedi by Rebellion Studios, what is the name of the main character?",
-    possibleAnswers: [
-      "Cal Kestis",
-      "Ben Skywalker",
-      "Boba Fett",
-      "Ezra Bridger",
-    ],
-    correctAnswer: "Cal Kestis",
-  },
-  {
-    questionID: 6,
-    questionText:
-      "In the Star Wars: Clone Wars micro series by Genndy Tartakovsky, who injured General Grevious enough to give him his signature cough?",
-    possibleAnswers: [
-      "Anakin Skywalker",
-      "Obi-Wan Kenobi",
-      "Count Dooku",
-      "Mace Windu",
-    ],
-    correctAnswer: "Mace Windu",
-  },
-  {
-    questionID: 7,
-    questionText:
-      "What is the name of the droid that was made by Anakin Skywalker when he was a child?",
-    possibleAnswers: ["R2-D2", "C2P0", "BB-8", "Chopper"],
-    correctAnswer: "R2-D2",
-  },
-  {
-    questionID: 8,
-    questionText:
-      "Where did Obi-Wan Kenobi and Anakin Skywalker have their duel against each other that resulted in Anakin becoming Darth Vader?",
-    possibleAnswers: ["Dagobah", "Naboo", "Coruscant", "Mustafar"],
-    correctAnswer: "Mustafar",
-  },
-  {
-    questionID: 9,
-    questionText:
-      "What is the actual name of the Destroyer Droid deployed by the Confederacy of Independent Systems?",
-    possibleAnswers: ["Super Battle", "Commando", "Droideka", "Magnaguard"],
-    correctAnswer: "Droideka",
-  },
-  {
-    questionID: 10,
-    questionText:
-      "Who were the developers of the original Star Wars Battlefront games published by LucasArts?",
-    possibleAnswers: ["Sickness", "Pandemic", "Electronic Arts", "DICE"],
-    correctAnswer: "Pandemic",
-  },
-];
+import {
+  shuffleAndSliceNewQuiz,
+  QuizQuestionData,
+} from "./Ckdejager_FE_Project1_quizData.js";
 
-const quizData = QuizQuestionData;
+let quizData = shuffleAndSliceNewQuiz(QuizQuestionData);
 
 const userAnswers = [];
 const wrongAnswers = [];
@@ -124,12 +34,6 @@ const correctAnswer = document.getElementById("correct-answer");
 let currentQuestionID = 0;
 let quizScore = 0;
 
-for (quizQuestion in quizQuestions) {
-  quizQuestions[quizQuestion].onclick = function () {
-    nextButton.disabled = false;
-  };
-}
-
 nextButton.addEventListener("click", () => {
   if (currentQuestionID < 11) {
     if (currentQuestionID === 0) {
@@ -159,6 +63,12 @@ resetButton.addEventListener("click", () => {
   currentQuestionID = 0;
   restartQuiz(currentQuestionID);
 });
+
+for (let i = 0; i < quizQuestions.length; i++) {
+  quizQuestions[i].onclick = function () {
+    nextButton.disabled = false;
+  };
+}
 
 function updatePage(currentQuestionID) {
   if (currentQuestionID > 0 && currentQuestionID < 11) {
@@ -294,7 +204,7 @@ function checkAnswer(quizQuestions) {
 
 function displayResults() {
   results.innerHTML = `${quizScore} out of 10`;
-
+  console.log(userAnswers);
   if (quizScore < 10) {
     retryMessage.innerHTML =
       "If you would like to try and get a higher score, hit 'Restart Quiz'!";
@@ -350,19 +260,10 @@ function restartQuiz(currentQuestionID) {
   while (quizSummaryBlock.hasChildNodes()) {
     quizSummaryBlock.removeChild(quizSummaryBlock.firstChild);
   }
+  console.log(quizData);
+  quizData = shuffleAndSliceNewQuiz(QuizQuestionData);
+  console.log(quizData);
   updatePage(currentQuestionID);
-}
-
-function questionAlreadySelected(currentQuestionID) {
-  let i = 0;
-  nextButton.disabled = true;
-  while (i < quizQuestions.length) {
-    i++;
-    if (quizQuestions[i].checked != false) {
-      nextButton.disabled = false;
-      break;
-    }
-  }
 }
 
 function quizSummary() {
