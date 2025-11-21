@@ -3,7 +3,7 @@ import {
   QuizQuestionData,
 } from "./Ckdejager_FE_Project1_quizData.js";
 
-let quizData = shuffleAndSliceNewQuiz(QuizQuestionData);
+const quizData = shuffleAndSliceNewQuiz(QuizQuestionData);
 
 const userAnswers = [];
 const wrongAnswers = [];
@@ -26,10 +26,6 @@ const resultsText = document.getElementById("results-text");
 const retryMessage = document.getElementById("retry-message");
 
 const quizSummaryBlock = document.getElementById("quiz-summary");
-const accordions = document.getElementsByClassName("accordion");
-const accordionPanels = document.getElementsByClassName("panel");
-const userAnswer = document.getElementById("user-answer");
-const correctAnswer = document.getElementById("correct-answer");
 
 let currentQuestionID = 0;
 let quizScore = 0;
@@ -204,7 +200,6 @@ function checkAnswer(quizQuestions) {
 
 function displayResults() {
   results.innerHTML = `${quizScore} out of 10`;
-  console.log(userAnswers);
   if (quizScore < 10) {
     retryMessage.innerHTML =
       "If you would like to try and get a higher score, hit 'Restart Quiz'!";
@@ -260,9 +255,6 @@ function restartQuiz(currentQuestionID) {
   while (quizSummaryBlock.hasChildNodes()) {
     quizSummaryBlock.removeChild(quizSummaryBlock.firstChild);
   }
-  console.log(quizData);
-  quizData = shuffleAndSliceNewQuiz(QuizQuestionData);
-  console.log(quizData);
   updatePage(currentQuestionID);
 }
 
