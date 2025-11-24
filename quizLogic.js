@@ -1,7 +1,4 @@
-import {
-  shuffleAndSliceNewQuiz,
-  QuizQuestionData,
-} from "./Ckdejager_FE_Project1_quizData.js";
+import { shuffleAndSliceNewQuiz, QuizQuestionData } from "./quizData.js";
 
 const quizData = shuffleAndSliceNewQuiz(QuizQuestionData);
 
