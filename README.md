@@ -2,12 +2,12 @@
 
 ## Project purpose
 
-The purpose of this project is to test one's knowledge from questions drawn from teh Star Wars games and movies.
+The purpose of this project is to test one's knowledge from questions drawn from the Star Wars games and movies.
 This consists of ten multiple choice questions.
 
 ## Project value
 
-The value of the quiz is to improve the general knowledge of those taking the quiz and to have fun. The quiz includes some images for the beginning and the summary based on how well teh user performed on the quiz.
+The value of the quiz is to improve the general knowledge of those taking the quiz and to have fun. The quiz includes some images for the beginning and the summary based on how well the user performed on the quiz.
 
 ### Code used
 
